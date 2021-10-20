@@ -1,0 +1,11 @@
+package com.bookingInfoService.Repository;
+
+import java.util.Optional;
+
+import com.bookingInfoService.Entity.BookingInfoEntity;
+
+public interface CustomFlightRepository {
+
+	 Optional<BookingInfoEntity> findOne(String userId);
+
+}

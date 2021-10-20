@@ -1,0 +1,30 @@
+package com.bookingInfoService.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bookingInfoService.Entity.BookingInfoEntity;
+import com.bookingInfoService.Service.BookingInfoService;
+
+@RestController
+public class BookingInfoController {
+
+	@Autowired
+	private BookingInfoService bookingInfoService;
+	
+	@GetMapping("/airlines")
+	public List<BookingInfoEntity> getAllAirlines(){
+		return bookingInfoService.findAllAirlines();
+	}
+	
+	@PostMapping("/airlines")
+	public BookingInfoEntity saveInAirlines(@RequestBody BookingInfoEntity a) {
+		return bookingInfoService.create(a);
+	}
+
+}

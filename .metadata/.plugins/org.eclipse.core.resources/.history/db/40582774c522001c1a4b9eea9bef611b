@@ -1,0 +1,9 @@
+package com.userService.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.userService.UserServiceApplication;
+
+public interface UserRepository extends JpaRepository<UserServiceApplication, Integer> {
+
+}

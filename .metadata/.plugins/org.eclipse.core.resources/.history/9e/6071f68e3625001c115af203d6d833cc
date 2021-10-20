@@ -1,0 +1,59 @@
+package com.airlinesService.Controller;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.airlinesService.Entity.AirlinesEntity;
+import com.airlinesService.Service.AirlinesService;
+
+@RequestMapping("/api/v1.0/flight")
+@RestController
+public class AirlinesController {
+
+	@Autowired
+	private AirlinesService airlinesService;
+
+	@GetMapping("/search") // Searches for flight
+	public List<AirlinesEntity> getAllAirlines() {
+		return airlinesService.findAllAirlines();
+	}
+
+	@PutMapping("/airline/inventory/add/{flightNumber}") // Add Inventory/Schedule of an existing Airline
+	public AirlinesEntity save(@RequestBody AirlinesEntity a, @PathVariable int flightNumber) {
+		System.out.println("Updating airline details where flightnumber is : " + flightNumber);
+		return airlinesService.updateAirline(flightNumber, a);
+	}
+
+//	@GetMapping("/search/{fromPlace}/{toPlace}/{startDateTime}/{endDateTime}/{flightNumber}") // Searches for flight
+//	public AirlinesEntity searchFlights(@PathVariable String fromPlace, @PathVariable String toPlace,
+//			@PathVariable Date startDateTime, @PathVariable Date endDateTime, @PathVariable int flightNumber) {
+//		System.out.println("Finding flights.........");
+//		return airlinesService.findAirlines(fromPlace, toPlace, startDateTime, endDateTime, flightNumber);
+//	}
+
+	@GetMapping("/search/{fromPlace}/{toPlace}/{startDateTime}/{endDateTime}/{flightNumber}")   //Searches for flight 
+	public AirlinesEntity searchAllFlights(@RequestBody @RequestParam("fromPlace") String fromPlace, 
+										   @RequestParam("toPlace") String toPlace, 
+										   @RequestParam("startDateTime") Date startDateTime, 
+										   @RequestParam("endDateTime") Date endDateTime, 
+										   @RequestParam("flightNumber") int flightNumber ){
+		System.out.println("Finding flights.........");
+		return airlinesService.findAirlines(fromPlace,toPlace,startDateTime,endDateTime,flightNumber);
+	}
+
+	@PostMapping("/airlines/register") // New airline booking
+	public AirlinesEntity saveInAirlines(@RequestBody AirlinesEntity a) {
+		return airlinesService.create(a);
+	}
+
+}

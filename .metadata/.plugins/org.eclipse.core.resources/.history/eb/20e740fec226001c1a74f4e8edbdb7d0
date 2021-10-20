@@ -1,0 +1,17 @@
+package com.demo.services;
+
+import com.demo.models.Book;
+
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
+
+@Service
+public class KafkaConsumerDemo {
+    
+    @KafkaListener(topics = "kafka_topic_name", groupId="group_id", containerFactory = "userKafkaListenerFactory")
+    public void consumeData(Airlines book){
+        System.out.println("Consumer app has received data+++++");
+        System.out.println(book);
+    }
+
+}

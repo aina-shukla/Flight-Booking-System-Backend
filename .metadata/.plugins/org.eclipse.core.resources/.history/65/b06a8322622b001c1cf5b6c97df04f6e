@@ -1,0 +1,23 @@
+
+server.port=9090
+
+spring.application.name=api-gateway
+
+eureka.client.serviceUrl.defaultZone= http://localhost:8585/eureka/
+
+
+zuul.routes.admin.url=admin-service
+zuul.routes.admin.path=/api/v1.0/flight/**
+
+zuul.routes.airlines.url=airlines-service
+zuul.routes.airlines.path=/api/v1.0/flight/**
+
+zuul.routes.booking.url=booking-service
+zuul.routes.booking.path=/api/v1.0/flight/**
+
+zuul.routes.user.url=user-service
+zuul.routes.user.path=/api/v1.0/flight/**
+
+#ribbon.ReadTimeout=60000
+
+# http://localhost:9090/shows/v1 => http://CINEMA-CATALOG/v1

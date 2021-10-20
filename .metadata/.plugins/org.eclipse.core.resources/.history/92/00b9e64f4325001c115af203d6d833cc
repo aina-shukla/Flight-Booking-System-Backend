@@ -1,0 +1,5 @@
+package com.bookingInfoService.Repository;
+
+public interface CustomFlightRepository {
+
+}

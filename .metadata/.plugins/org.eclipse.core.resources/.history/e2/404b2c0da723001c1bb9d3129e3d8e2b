@@ -1,0 +1,5 @@
+package com.bookingInfoService.Exceptions;
+
+public class RecordNotFoundException {
+
+}

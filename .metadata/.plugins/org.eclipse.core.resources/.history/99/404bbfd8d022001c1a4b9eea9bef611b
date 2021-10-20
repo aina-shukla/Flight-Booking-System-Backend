@@ -1,0 +1,10 @@
+package com.adminService;
+
+public class AdminServiceApplication {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

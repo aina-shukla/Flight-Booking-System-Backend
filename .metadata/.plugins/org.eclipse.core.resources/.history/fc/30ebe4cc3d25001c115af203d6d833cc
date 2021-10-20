@@ -1,0 +1,17 @@
+package com.bookingInfoService.Exceptions;
+
+public class EmailNotFoundException {
+
+	
+	public EmailNotFoundException() {}
+
+	public EmailNotFoundException(String m) {
+		super();
+	}
+	public EmailNotFoundException(Exception e) {
+		super();
+	}
+	public EmailNotFoundException(String m, Exception e) {
+		super();
+	}
+}

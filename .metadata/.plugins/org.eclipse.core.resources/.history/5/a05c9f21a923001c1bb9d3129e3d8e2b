@@ -1,0 +1,45 @@
+package com.bookingInfoService.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bookingInfoService.Entity.BookingInfoEntity;
+import com.bookingInfoService.Repository.BookingInfoRepository;
+
+@Service
+public class BookingInfoService {
+
+	@Autowired
+	private BookingInfoRepository bookingInfoRepository;
+
+	public List<BookingInfoEntity> findAllAirlines() {
+		return bookingInfoRepository.findAll();
+	}
+
+	public BookingInfoEntity create(BookingInfoEntity a) {
+		return bookingInfoRepository.save(a);
+	}
+
+	public BookingInfoEntity findTicket(int pNR) {
+		Optional<BookingInfoEntity> optional = bookingInfoRepository.findById(pNR);
+		if(optional.isEmpty()) {			
+			// raise exception
+			return null;
+		} else {
+			return optional.get();
+		}
+	
+	}
+
+	public BookingInfoEntity createTicket(BookingInfoEntity a) {
+		return bookingInfoRepository.save(a);
+	}
+
+	public BookingInfoEntity cancelTicket(BookingInfoEntity b) {
+		return bookingInfoRepository.save(b);
+	}
+
+}

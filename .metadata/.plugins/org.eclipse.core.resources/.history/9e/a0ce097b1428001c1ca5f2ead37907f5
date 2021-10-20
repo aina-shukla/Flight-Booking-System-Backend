@@ -1,0 +1,51 @@
+package com.airlinesService.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
+
+import com.airlinesService.Entity.AirlinesEntity;
+import com.airlinesService.Exceptions.AirlineNotFoundException;
+import com.airlinesService.Repository.AirlinesRepository;
+
+@Service
+public class AirlinesService {
+
+	@Autowired
+	private AirlinesRepository airlinesRepository;
+
+	public List<AirlinesEntity> findAllAirlines() {
+		return airlinesRepository.findAll();
+	}
+
+    @KafkaListener(topics = "creatingflights", groupId="group_id", containerFactory = "userKafkaListenerFactory")
+	public AirlinesEntity create(AirlinesEntity a) {
+		return airlinesRepository.save(a);
+	}
+
+	public AirlinesEntity findAirlines(String fromPlace, String toPlace, Date startDateTime, Date endDateTime,
+			int flightNumber) {
+
+		Optional<AirlinesEntity> optional = airlinesRepository.findById(flightNumber);
+		if (optional.isEmpty()) {
+			throw new AirlineNotFoundException();
+		} else {
+			return optional.get();
+		}
+	}
+
+	public AirlinesEntity updateAirline(int flightNumber, AirlinesEntity a) {
+		if(airlinesRepository.existsById(flightNumber)) {	
+			a.setFlightNumber(flightNumber);
+			return airlinesRepository.save(a);
+		} else {
+			System.out.println("Given flightnumber is not available");
+			return null;
+		}
+	}
+
+}

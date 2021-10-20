@@ -1,0 +1,16 @@
+package com.bookingInfoService.Exceptions;
+
+public class RecordNotFoundException extends RuntimeException {
+
+	public RecordNotFoundException() {}
+
+	public RecordNotFoundException(String m) {
+		super(m);
+	}
+	public RecordNotFoundException(Exception e) {
+		super(e);
+	}
+	public RecordNotFoundException(String m, Exception e) {
+		super(m, e);
+	}
+}

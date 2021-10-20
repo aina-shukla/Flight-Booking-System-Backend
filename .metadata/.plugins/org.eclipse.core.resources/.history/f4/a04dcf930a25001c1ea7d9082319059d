@@ -1,0 +1,73 @@
+package com.bookingInfoService.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bookingInfoService.Entity.BookingInfoEntity;
+import com.bookingInfoService.Exceptions.TicketNotFoundException;
+import com.bookingInfoService.Service.BookingInfoService;
+import com.userService.Entity.UserEntity;
+
+@RestController
+@RequestMapping("/api/v1.0/flight")
+public class BookingInfoController {
+
+	@Autowired
+	private BookingInfoService bookingInfoService;
+	
+	@GetMapping("/booking/history/all")   //get booked tickets history of all users
+	public List<BookingInfoEntity> getAllAirlines(){
+		return bookingInfoService.findAllAirlines();
+	}
+	
+	@PostMapping("/booking/tickets")  //booking tickets
+	public BookingInfoEntity save(@RequestBody BookingInfoEntity b) {
+		return bookingInfoService.bookTicket(b);
+	}
+	
+	@GetMapping("/ticket/{pNR}")    //Get Booked ticket details based on PNR
+	public BookingInfoEntity getTicketByPNR(@PathVariable int pNR){
+		System.out.println("Finding ticket by PNR: "+ pNR);
+		return bookingInfoService.findTicket(pNR);
+	}
+
+	@GetMapping("booking/history/{emailId}")  //Get Booked tickets history based on Email ID 
+	public BookingInfoEntity getTicketByEmail(@PathVariable String userId){
+		int id = Integer.parseInt(userId);
+		System.out.println("Finding ticket by EMail: "+ id);
+		return bookingInfoService.findTicketByEmail(id);
+	}
+	
+	@PostMapping("/booking/{flightNumber}")   //Book ticket 
+	public BookingInfoEntity bookTicket(@RequestBody BookingInfoEntity flightNumber) {
+		return bookingInfoService.createTicket(flightNumber);
+	}
+	
+//	@DeleteMapping(value = "/booking/cancel/{pNR}")  //Cancel a booked ticket 
+//	
+//	public BookingInfoEntity Object cancelTicket(@PathVariable int pNR) {
+//
+//        boolean isRemoved = bookingInfoService.cancelTicket(pNR);
+//
+//        if (!isRemoved) {
+//            return new BookingInfoEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//
+//        return new BookingInfoEntity<>(pNR, HttpStatus.OK);
+//    }
+//	public BookingInfoEntity cancelBookedTicket(@RequestBody BookingInfoEntity b) {
+//		return bookingInfoService.cancelTicket(b);
+//	}
+
+}

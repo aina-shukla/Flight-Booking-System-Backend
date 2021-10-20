@@ -1,0 +1,5 @@
+package com.bookingInfoService.config;
+
+public class WebConfig {
+
+}

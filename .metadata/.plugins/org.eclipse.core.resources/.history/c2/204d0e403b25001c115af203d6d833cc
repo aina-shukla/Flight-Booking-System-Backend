@@ -1,0 +1,205 @@
+package com.bookingInfoService.Entity;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class BookingHistory extends BookingInfoEntity {
+
+	@Id
+	private String userId;
+	private int pNR;
+	private String name;
+	private char gender;
+	private int age;
+	private int seatNumber;
+	private String mealReq;
+	private String mealType;
+	private long contactNumber;
+	private String flightNumber;
+	private String airlineName;
+	private String fromPlace;
+	private String toPlace;
+	private Date startDateTime;
+	private Date endDateTime;
+	private int numberOfSeats;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public int getpNR() {
+		return pNR;
+	}
+
+	public void setpNR(int pNR) {
+		this.pNR = pNR;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public char getGender() {
+		return gender;
+	}
+
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getSeatNumber() {
+		return seatNumber;
+	}
+
+	public void setSeatNumber(int seatNumber) {
+		this.seatNumber = seatNumber;
+	}
+
+	public String getMealReq() {
+		return mealReq;
+	}
+
+	public void setMealReq(String mealReq) {
+		this.mealReq = mealReq;
+	}
+
+	public String getMealType() {
+		return mealType;
+	}
+
+	public void setMealType(String mealType) {
+		this.mealType = mealType;
+	}
+
+	public long getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(long contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	public String getFlightNumber() {
+		return flightNumber;
+	}
+
+	public void setFlightNumber(String flightNumber) {
+		this.flightNumber = flightNumber;
+	}
+
+	public String getAirlineName() {
+		return airlineName;
+	}
+
+	public void setAirlineName(String airlineName) {
+		this.airlineName = airlineName;
+	}
+
+	public String getFromPlace() {
+		return fromPlace;
+	}
+
+	public void setFromPlace(String fromPlace) {
+		this.fromPlace = fromPlace;
+	}
+
+	public String getToPlace() {
+		return toPlace;
+	}
+
+	public void setToPlace(String toPlace) {
+		this.toPlace = toPlace;
+	}
+
+	public Date getStartDateTime() {
+		return startDateTime;
+	}
+
+	public void setStartDateTime(Date startDateTime) {
+		this.startDateTime = startDateTime;
+	}
+
+	public Date getEndDateTime() {
+		return endDateTime;
+	}
+
+	public void setEndDateTime(Date endDateTime) {
+		this.endDateTime = endDateTime;
+	}
+
+	public int getNumberOfSeats() {
+		return numberOfSeats;
+	}
+
+	public void setNumberOfSeats(int numberOfSeats) {
+		this.numberOfSeats = numberOfSeats;
+	}
+
+	@Override
+	public String toString() {
+		return "BookingHistory [userId=" + userId + ", pNR=" + pNR + ", name=" + name + ", gender=" + gender + ", age="
+				+ age + ", seatNumber=" + seatNumber + ", mealReq=" + mealReq + ", mealType=" + mealType
+				+ ", contactNumber=" + contactNumber + ", flightNumber=" + flightNumber + ", airlineName=" + airlineName
+				+ ", fromPlace=" + fromPlace + ", toPlace=" + toPlace + ", startDateTime=" + startDateTime
+				+ ", endDateTime=" + endDateTime + ", numberOfSeats=" + numberOfSeats + "]";
+	}
+
+	public BookingHistory(int pNR, String name, char gender, int age, int seatNumber, String mealReq, String mealType,
+			String userId, long contactNumber, String flightNumber, String airlineName, String fromPlace,
+			String toPlace, Date startDateTime, Date endDateTime, int numberOfSeats, String userId2, int pNR2,
+			String name2, char gender2, int age2, int seatNumber2, String mealReq2, String mealType2,
+			long contactNumber2, String flightNumber2, String airlineName2, String fromPlace2, String toPlace2,
+			Date startDateTime2, Date endDateTime2, int numberOfSeats2) {
+		super(pNR, name, gender, age, seatNumber, mealReq, mealType, userId, contactNumber, flightNumber, airlineName,
+				fromPlace, toPlace, startDateTime, endDateTime, numberOfSeats);
+		userId = userId2;
+		pNR = pNR2;
+		name = name2;
+		gender = gender2;
+		age = age2;
+		seatNumber = seatNumber2;
+		mealReq = mealReq2;
+		mealType = mealType2;
+		contactNumber = contactNumber2;
+		flightNumber = flightNumber2;
+		airlineName = airlineName2;
+		fromPlace = fromPlace2;
+		toPlace = toPlace2;
+		startDateTime = startDateTime2;
+		endDateTime = endDateTime2;
+		numberOfSeats = numberOfSeats2;
+	}
+
+	public BookingHistory(int pNR, String name, char gender, int age, int seatNumber, String mealReq, String mealType,
+			String userId, long contactNumber, String flightNumber, String airlineName, String fromPlace,
+			String toPlace, Date startDateTime, Date endDateTime, int numberOfSeats, String userId2, int pNR2) {
+		super(pNR, name, gender, age, seatNumber, mealReq, mealType, userId, contactNumber, flightNumber, airlineName,
+				fromPlace, toPlace, startDateTime, endDateTime, numberOfSeats);
+		userId = userId2;
+		pNR = pNR2;
+	}
+
+	public BookingHistory() {
+		super();
+	}
+
+}

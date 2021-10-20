@@ -1,0 +1,65 @@
+package com.airlinesService.Service;
+
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
+import com.airlinesService.Entity.AirlinesEntity;
+import com.airlinesService.Exceptions.AirlineNotFoundException;
+import com.airlinesService.Exceptions.FlightNotFoundException;
+import com.airlinesService.Repository.AirlinesRepository;
+
+@Service
+public class AirlinesService {
+
+	@Autowired
+	private AirlinesRepository airlinesRepository;
+
+	public List<AirlinesEntity> findAllAirlines() {
+		return airlinesRepository.findAll();
+	}
+
+	@KafkaListener(topics = "registerflights", groupId = "group_id", containerFactory = "userKafkaListenerFactory")
+	public AirlinesEntity create(AirlinesEntity a) {
+		return airlinesRepository.save(a);
+	}
+
+	public AirlinesEntity updateAirline(int flightNumber, AirlinesEntity a) {
+		if (airlinesRepository.existsById(flightNumber)) {
+			a.setFlightNumber(flightNumber);
+			return airlinesRepository.save(a);
+		} else {
+			throw new FlightNotFoundException("Flight with flight number \" " + flightNumber + " \" doesnot exist.");
+		}
+	}
+
+	public AirlinesEntity searchAllFlights(int flightNumber, String fromPlace, String toPlace, String startDateTime,
+			String endDateTime) {
+		Optional<AirlinesEntity> optional = airlinesRepository.findByFlightNumber(flightNumber);
+		if (optional.isPresent()) {
+			return optional.get();
+		} else {
+			throw new FlightNotFoundException("Flight with flight number \" " + flightNumber + " \" doesnot exist.");
+		}
+	}
+
+	public AirlinesEntity blockAirline(int flightNumber) {
+		Optional<AirlinesEntity> findByAirlineName = airlinesRepository.findById(flightNumber);
+		if (findByAirlineName.isPresent()) {
+			AirlinesEntity a = findByAirlineName.get();
+			a.setBlockStatus("BLOCKED");
+			return airlinesRepository.save(a);
+		} else
+			throw new AirlineNotFoundException("Airline with flightnumber \" " + flightNumber + " \" not exists");
+	}
+
+	public List<AirlinesEntity> findUnblockedFlights() {
+		String status = "BLOCKED";
+		List<AirlinesEntity> list = airlinesRepository.findByStatus(status);
+		if (list.isEmpty())
+			throw new FlightNotFoundException("User with email \" " + userId + "\" doesnot exist.");
+		else
+			return list;
+	}
+}

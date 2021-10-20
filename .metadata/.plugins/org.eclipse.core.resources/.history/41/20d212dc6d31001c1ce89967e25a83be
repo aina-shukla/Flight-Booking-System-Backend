@@ -1,0 +1,5 @@
+package com.adminService.config;
+
+public class WebConfig {
+
+}

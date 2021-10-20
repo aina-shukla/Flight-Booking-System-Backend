@@ -1,0 +1,13 @@
+package com.userService.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.userService.Entity.UserEntity;
+
+public interface UserRepository extends JpaRepository<UserEntity, Integer> {
+
+	boolean existsById(String userName);
+
+	UserEntity save(String userName);
+
+}

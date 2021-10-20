@@ -1,0 +1,40 @@
+package com.airlinesService.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.airlinesService.Entity.AirlinesEntity;
+import com.airlinesService.Repository.AirlinesRepository;
+import com.bookingInfoService.Entity.BookingInfoEntity;
+import com.bookingInfoService.Exceptions.TicketNotFoundException;
+
+@Service
+public class AirlinesService {
+
+	@Autowired
+	private AirlinesRepository airlinesRepository;
+	
+	public List<AirlinesEntity> findAllAirlines() {
+		return airlinesRepository.findAll();
+	}
+
+	public AirlinesEntity create(AirlinesEntity a) {
+		return airlinesRepository.save(a);
+	}
+
+	public AirlinesEntity findAirlines(String fromPlace, String toPlace, Date startDateTime, Date endDateTime, int flightNumber) {
+		
+		Optional<AirlinesEntity> optional = airlinesRepository.findById(flightNumber);
+		if(optional.isEmpty()) {			
+			// raise exception
+			return null;
+		} else {
+			return optional.get();
+		}
+	}
+	
+}

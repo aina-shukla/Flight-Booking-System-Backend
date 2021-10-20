@@ -1,0 +1,5 @@
+package com.bookingInfoService.Entity;
+
+public class BookingHistory extends BookingInfoEntity {
+
+}

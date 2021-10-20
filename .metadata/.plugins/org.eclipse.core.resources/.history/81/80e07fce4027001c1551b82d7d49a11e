@@ -1,0 +1,63 @@
+package com.bookingInfoService.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bookingInfoService.Entity.BookingInfoEntity;
+import com.bookingInfoService.Exceptions.TicketNotFoundException;
+import com.bookingInfoService.Service.BookingInfoService;
+
+
+@RestController
+@RequestMapping("/api/v1.0/flight")
+public class BookingInfoController {
+
+	@Autowired
+	private BookingInfoService bookingInfoService;
+	
+	@GetMapping("/booking/history/all")   //get booked tickets history of all users
+	public List<BookingInfoEntity> getAllAirlines(){
+		return bookingInfoService.findAllAirlines();
+	}
+	
+	@PostMapping("/booking/tickets")  //booking tickets
+	public BookingInfoEntity save(@RequestBody BookingInfoEntity b) {
+		return bookingInfoService.bookTicket(b);
+	}
+	
+	@GetMapping("/ticket/{pNR}")    //Get Booked ticket details based on PNR
+	public BookingInfoEntity getTicketByPNR(@PathVariable int pNR){
+		System.out.println("Finding ticket by PNR: "+ pNR);
+		return bookingInfoService.findTicket(pNR);
+	}
+
+	@PostMapping("/booking/{flightNumber}")   //Book ticket 
+	public BookingInfoEntity bookTicket(@RequestBody BookingInfoEntity b) {
+		return bookingInfoService.createTicket(b);
+	}
+	
+	@GetMapping("booking/history/{userId}")  //Get Booked tickets history based on Email ID 
+	public BookingInfoEntity getTicketByEmail(@PathVariable String userId){
+		System.out.println("Finding ticket by EMail: "+ userId);
+		return bookingInfoService.findTicketByEmail(userId);
+	}
+	
+	@DeleteMapping("booking/cancel/{pNR}")  //cancel a ticket
+	public BookingInfoEntity cancelFlight(@PathVariable("pNR") int pNR) {
+		return bookingInfoService.cancelTicket(pNR);
+	}
+
+}

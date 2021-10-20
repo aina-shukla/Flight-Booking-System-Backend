@@ -1,0 +1,13 @@
+package com.adminService.Entity;
+
+import javax.persistence.Entity;
+
+@Entity
+public class AdminEntity {
+
+	private String name = "Admin";
+	@SuppressWarnings("unused")
+	private String username = "Admin";
+	private String password = "Admin";
+	
+}

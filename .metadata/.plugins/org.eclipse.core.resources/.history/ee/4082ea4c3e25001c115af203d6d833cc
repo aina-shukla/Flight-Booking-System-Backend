@@ -1,0 +1,5 @@
+package com.bookingInfoService.Controller;
+
+public class BookingHistoryController {
+
+}

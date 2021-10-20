@@ -1,0 +1,25 @@
+package com.airlinesService.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.airlinesService.Repository.AirlinesRepository;
+import com.bookingInfoService.Entity.AirlinesEntity;
+
+@Service
+public class AirlinesService {
+
+	@Autowired
+	private AirlinesRepository airlinesRepository;
+	
+	public List<AirlinesEntity> findAllAirlines() {
+		return airlinesRepository.findAll();
+	}
+
+	public AirlinesEntity create(AirlinesEntity a) {
+		return airlinesRepository.save(a);
+	}
+	
+}

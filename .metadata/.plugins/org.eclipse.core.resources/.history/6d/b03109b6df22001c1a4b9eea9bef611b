@@ -1,0 +1,9 @@
+package com.bookingInfoService.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.bookingInfoService.Entity.BookingInfoEntity;
+
+public interface AirlinesRepository extends JpaRepository<BookingInfoEntity, Integer> {
+
+}

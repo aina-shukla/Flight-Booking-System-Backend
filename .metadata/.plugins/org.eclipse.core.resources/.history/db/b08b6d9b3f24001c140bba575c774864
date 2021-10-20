@@ -1,0 +1,13 @@
+package com.bookingInfoService.Repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.bookingInfoService.Entity.BookingInfoEntity;
+
+public interface BookingInfoRepository extends JpaRepository<BookingInfoEntity, Integer> {
+
+	//Optional<BookingInfoEntity> findOne(String pNR);
+
+}

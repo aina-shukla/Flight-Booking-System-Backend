@@ -1,0 +1,5 @@
+package com.adminService.Entity;
+
+public class AdminEntity {
+
+}

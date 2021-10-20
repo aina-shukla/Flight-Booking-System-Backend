@@ -1,0 +1,8 @@
+package com.adminService.Controller;
+
+public class Snippet {
+	public static void main(String[] args) {
+		kafka-server-start.bat ./config/server.properties 
+	}
+}
+

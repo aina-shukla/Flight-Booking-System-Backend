@@ -1,0 +1,96 @@
+package com.userService.Entity;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class UserEntity {
+
+    @Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+    private String fullName;
+    private int id;
+    private int age;
+    private String userName;
+    private String password;
+    private String dateOfBirth;
+    private String ContactNumber;
+    private String emailId;
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	public String getContactNumber() {
+		return ContactNumber;
+	}
+	public void setContactNumber(String contactNumber) {
+		ContactNumber = contactNumber;
+	}
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+    
+	
+	
+	public UserEntity(String fullName, int id, int age, String userName, String password, String dateOfBirth,
+			String contactNumber, String emailId) {
+		super();
+		this.fullName = fullName;
+		this.id = id;
+		this.age = age;
+		this.userName = userName;
+		this.password = password;
+		this.dateOfBirth = dateOfBirth;
+		ContactNumber = contactNumber;
+		this.emailId = emailId;
+	}
+	
+	public UserEntity(String fullName, int id, String emailId) {
+		super();
+		this.fullName = fullName;
+		this.id = id;
+		this.emailId = emailId;
+	}
+	
+	public UserEntity() {
+		super();
+	}
+}

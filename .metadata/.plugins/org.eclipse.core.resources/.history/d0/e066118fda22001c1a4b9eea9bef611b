@@ -1,0 +1,23 @@
+package com.airlinesService.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.airlinesService.Entity.AirlinesEntity;
+import com.airlinesService.Service.AirlinesService;
+
+@RestController
+public class AirlinesController {
+
+	@Autowired
+	private AirlinesService airlinesService;
+	
+	@GetMapping("/airlines")
+	public List<AirlinesEntity> getAllAirlines(){
+		return airlinesService.findAll();
+	}
+
+}

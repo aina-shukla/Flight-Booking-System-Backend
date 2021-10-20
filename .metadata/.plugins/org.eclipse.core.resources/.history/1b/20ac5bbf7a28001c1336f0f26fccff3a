@@ -1,0 +1,10 @@
+package com.userService.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+
+import com.userService.Entity.UserEntity;
+
+public interface UserRepository extends JpaRepository<UserEntity, Integer>, CrudRepository<UserEntity, Integer> {
+
+}

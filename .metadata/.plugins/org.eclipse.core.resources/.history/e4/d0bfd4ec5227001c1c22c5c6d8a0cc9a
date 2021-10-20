@@ -1,0 +1,9 @@
+package com.airlinesService.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.airlinesService.Entity.AirlinesEntity;
+
+public interface AirlinesRepository extends JpaRepository<AirlinesEntity, Integer> {
+
+}
